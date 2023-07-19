@@ -27,9 +27,11 @@ const Navbar = () => {
     Recipes
   </Link>
 </li>
-        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Categories</li>
-        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">About</li>
-        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Contact</li>
+        <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 border-b border-gray-600 hover:text-[#851f1f]">
+  <Link to="Analytics" smooth={true} duration={700} onClick={handleNav}>About Us</Link>
+</li>
+<li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Categories</li>
+        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Contact Us</li>
       </ul>
       <div onClick={handleNav} className="block md:hidden">
         {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
@@ -40,14 +42,16 @@ const Navbar = () => {
         <h1 className="w-full text-3xl font-bold text-[#851f1f] m-4">ReCP</h1>
         <ul className="p-4 uppercase">
           <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 border-b border-gray-600 hover:text-[#851f1f]">Home</li>
+          <Link to="Cards" smooth={true} duration={700} onClick={handleNav}>
           <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 border-b border-gray-600 hover:text-[#851f1f]">
-  <Link to="Cards" smooth={true} duration={700} onClick={handleNav}>
     Recipes
-  </Link>
-</li>
-          <li onClick={handleNav} className="p-4 hover:scale-105 duration-300  border-b border-gray-600 hover:text-[#851f1f]">Categories</li>
-          <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 border-b border-gray-600 hover:text-[#851f1f]">About</li>
-          <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Contact</li>
+</li></Link>
+<Link to="Analytics" smooth={true} duration={700} onClick={handleNav}>
+          <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 border-b border-gray-600 hover:text-[#851f1f]">
+  About Us
+</li></Link>
+<li className="p-4 hover:scale-105 duration-300 border-b border-gray-600 hover:text-[#851f1f]">Categories</li>
+          <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Contact Us</li>
         </ul>
       </div>
     </div>
@@ -78,7 +82,7 @@ const Hero = () => {
 function RecipeCard({ recipe }) {
   return (
     <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300">
-      <img className="w-20 mx-auto mt-[-3rem] bg-white" src={recipe.image} alt={recipe.title} />
+      <img className="w-20 mx-auto mt-[-3rem] " src={recipe.image} alt={recipe.title} />
       <h2 className="text-2xl font-bold text-center py-8">{recipe.title}</h2>
       <h3 className="text-lg font-medium mb-2">Ingredients:</h3>
       <ul className="list-disc pl-6 mb-4">
@@ -130,18 +134,35 @@ function Cards() {
 
 function Analytics() {
   return (
-    <div className="w-full bg-black py-16 px-4">
+    <div id="Analytics" className="w-full bg-black py-16 px-4">
       <div className="max-w-[1240px] mx-auto grid md:grid-cols-2">
-        <img className="w-[500px] mx-auto my-4" src={recipe} alt="analytics" />
+        <img className="w-[500px] mx-auto my-4" src={recipe} alt="recipe analytics" />
         <div className="flex flex-col justify-center">
-          <p className="text-[#851f1f] font-bold">RECIPE ANALYTICS DASHBOARD</p>
-          <h1 className="md:text-4xl sm:text-3xl text-2xl text-white font-bold py-2">Manage Recipe Data Centrally</h1>
-          <p className=" text-white">
-            Access recipe analytics and charts to analyze trends and make informed cooking decisions.
+          <p className="text-[#851f1f] font-bold">ABOUT ReCP</p>
+          <h1 className="md:text-4xl sm:text-3xl text-2xl text-white font-bold py-2">Discover the Art of Food</h1>
+          <p className="text-white">
+            Welcome to ReCP, your ultimate destination for exploring and sharing the art of food. Whether you're a seasoned chef or a home cook, ReCP offers a centralized platform to access recipe analytics and trends, helping you make informed and delightful cooking decisions.
+
             <br />
-            Explore a wide range of recipe categories, from breakfast and salads to desserts and cocktails.
             <br />
-            Connect with a community of food enthusiasts to share ideas and insights.
+
+            Our vast collection of recipes covers a wide range of categories, from delectable breakfast dishes and refreshing salads to mouthwatering desserts and exotic cocktails. 
+
+            <br />
+            <br />
+
+            At ReCP, we believe that food is not just a necessity; it's an experience, an art that brings people together. Our platform allows food enthusiasts like you to connect, share ideas, and gain valuable insights from a passionate community that shares the same love for culinary adventures.
+
+            <br />
+            <br />
+
+            Join us on this gastronomic journey, where you can explore new flavors, learn cooking techniques, and create unforgettable memories with every dish you prepare.
+
+            <br />
+            <br />
+
+            Are you ready to elevate your culinary skills? Get started with ReCP today!
+
           </p>
           <button className="text-[#851f1f] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3 bg-white">Get Started</button>
         </div>
