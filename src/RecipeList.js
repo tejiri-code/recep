@@ -27,11 +27,11 @@ const Navbar = () => {
     Recipes
   </Link>
 </li>
-        <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 border-b border-gray-600 hover:text-[#851f1f]">
-  <Link to="Analytics" smooth={true} duration={700} onClick={handleNav}>About Us</Link>
+        <li onClick={handleNav} className="p-4 hover:scale-105 duration-300  hover:text-[#851f1f]">
+  <Link to="Analytics" smooth={true} duration={700} onClick={handleNav}>About </Link>
 </li>
 <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Categories</li>
-        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Contact Us</li>
+        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Contact </li>
       </ul>
       <div onClick={handleNav} className="block md:hidden">
         {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
@@ -61,18 +61,22 @@ const Navbar = () => {
 const Hero = () => {
   return (
     <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 text-white">
-   <img className="w-[100px] md:w-[400px] mx-auto my-4" src={pepper} alt="analytics" />
-    <div className="flex flex-col justify-left">
-      <div className="max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
-        <p className="text-[#851f1f] font-bold p-2">DELICIOUS RECIPES</p>
-        <h1 className="md:text-7xl sm:text-6xl text-4xl font-bold md:py-6"> Explore the Culinary World.</h1>
-        <div className="flex justify-center items-center">
-          <p className="md:text-5xl sm:text-4xl text-xl font-bold py-4">Discover Tasty Dishes </p>
-        </div>
-        <div>
-          <p className="md:text-2xl text-xl font-bold text-gray-500">Try out new recipes and satisfy your taste buds.</p>
-          <button className="bg-[#851f1f] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black">Get Started</button>
-        </div>
+      <img
+        className="w-[100px] md:w-[400px] mx-auto my-4 slide-in-left" // Add the slide-in-left class
+        src={pepper}
+        alt="analytics"
+      />
+      <div className="flex flex-col justify-left">
+        <div className="max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
+          <p className="text-[#851f1f] font-bold p-2">DELICIOUS RECIPES</p>
+          <h1 className="md:text-7xl sm:text-6xl text-4xl font-bold md:py-6"> Explore the Culinary World.</h1>
+          <div className="flex justify-center items-center">
+            <p className="md:text-5xl sm:text-4xl text-xl font-bold py-4">Discover Tasty Dishes </p>
+          </div>
+          <div>
+            <p className="md:text-2xl text-xl font-bold text-gray-500">Try out new recipes and satisfy your taste buds.</p>
+            <button className="bg-[#851f1f] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black">Get Started</button>
+          </div>
         </div>
       </div>
     </div>
