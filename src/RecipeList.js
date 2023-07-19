@@ -18,28 +18,35 @@ const Navbar = () => {
   };
 
   return (
+    
     <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white bg-black">
-      <h1 className="w-full text-3xl font-bold text-[#851f1f]">ReCP</h1>
-      <ul className="hidden md:flex">
-        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Home</li>
-        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">
-  <Link to="Cards" smooth={true} duration={700}>
-    Recipes
-  </Link>
-</li>
-        <li onClick={handleNav} className="p-4 hover:scale-105 duration-300  hover:text-[#851f1f]">
-  <Link to="Analytics" smooth={true} duration={700} onClick={handleNav}>About </Link>
-</li>
-<li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Categories</li>
-        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Contact </li>
-      </ul>
-      <div onClick={handleNav} className="block md:hidden">
-        {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
-      </div>
+    <h1 className="w-full text-3xl font-bold text-[#851f1f]">ReCP</h1>
+    <ul className="hidden md:flex">
+      <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer">Home</li>
+      <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer">
+        <Link to="Cards" smooth={true} duration={700}>
+          Recipes
+        </Link>
+      </li>
+      <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer">
+        <Link to="Analytics" smooth={true} duration={700}>
+          About
+        </Link>
+      </li>
+      <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer">Categories</li>
+      <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer">
+        <Link to="Contact" smooth={true} duration={700}>
+          Contact
+        </Link>
+      </li>
+    </ul>
+    <div onClick={() => setNav(!nav)} className="block md:hidden cursor-pointer">
+      {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+    </div>
+
 
 
       <div className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' : 'fixed left-[-100%]'}>
-        <h1 className="w-full text-3xl font-bold text-[#851f1f] m-4">ReCP</h1>
         <ul className="p-4 uppercase">
           <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 border-b border-gray-600 hover:text-[#851f1f]">Home</li>
           <Link to="Cards" smooth={true} duration={700} onClick={handleNav}>
