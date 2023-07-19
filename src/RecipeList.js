@@ -16,17 +16,16 @@ const Navbar = () => {
   const handleNav = () => {
     setNav(!nav);
   };
-
-  return (
-    <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white bg-black">
+return (
+  <div className={`flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white bg-black ${nav ? 'md:hidden' : ''}`}>
       <h1 className="w-full text-3xl font-bold text-[#851f1f]">ReCP</h1>
-      <ul className="hidden md:flex">
+      <ul className={`md:flex ${nav ? 'hidden' : ''}`}>
         <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Home</li>
         <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">
-  <Link to="Cards" smooth={true} duration={700}>
-    Recipes
-  </Link>
-</li>
+          <Link to="Cards" smooth={true} duration={700} onClick={handleNav}>
+            Recipes
+          </Link>
+        </li>
         <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Categories</li>
         <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">About</li>
         <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">Contact</li>
@@ -35,15 +34,15 @@ const Navbar = () => {
         {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
       </div>
 
-      <div className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' : 'fixed left-[-100%]'}>
+      <div className={`fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500 ${nav ? 'translate-x-0' : '-translate-x-full'}`}>
         <h1 className="w-full text-3xl font-bold text-[#851f1f] m-4">ReCP</h1>
         <ul className="p-4 uppercase">
           <li className="p-4 border-b border-gray-600 hover:text-[#851f1f]">Home</li>
-          <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f]">
-  <Link to="Cards" smooth={true} duration={700}>
-    Recipes
-  </Link>
-</li>
+          <li className="p-4 border-b border-gray-600 hover:text-[#851f1f]">
+            <Link to="Cards" smooth={true} duration={700} onClick={handleNav}>
+              Recipes
+            </Link>
+          </li>
           <li className="p-4 border-b border-gray-600 hover:text-[#851f1f]">Categories</li>
           <li className="p-4 border-b border-gray-600 hover:text-[#851f1f]">About</li>
           <li className="p-4">Contact</li>
@@ -53,10 +52,11 @@ const Navbar = () => {
   );
 };
 
+
 const Hero = () => {
   return (
     <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 text-white">
-    <img className="w-[400px] mx-auto my-4" src={pepper} alt="analytics" />
+    <img className="w-[400px] md:w-[200px] mx-auto my-4" src={pepper} alt="analytics" />
     <div className="flex flex-col justify-left">
       <div className="max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
         <p className="text-[#851f1f] font-bold p-2">DELICIOUS RECIPES</p>
