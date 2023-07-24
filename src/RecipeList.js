@@ -104,7 +104,7 @@ function RecipeCard({ recipe }) {
   }
 
   return (
-    <div className="w-full shadow-xl flex flex-col p-4 my-4 bg-white rounded-lg hover:scale-105 duration-300">
+    <div id="recp" className="w-full shadow-xl flex flex-col p-4 my-4 bg-white rounded-lg hover:scale-105 duration-300">
       <img className="w-20 mx-auto " src={recipe.image} alt={recipe.label} />
       <h2 className="text-2xl font-bold text-center py-8">{recipe.label}</h2>
       <h3 className="text-lg font-medium mb-2">Ingredients:</h3>
@@ -117,21 +117,7 @@ function RecipeCard({ recipe }) {
   );
 }
 
-function Cards({ fetchedRecipes }) {
-  const recipes = fetchedRecipes || [];
 
-  return (
-    <div id="Cards" className="w-full py-[10rem] px-4 bg-white">
-      <div className="max-w-[1240px] mx-auto grid md:grid-cols-3 gap-8">
-        {fetchedRecipes ? (
-          recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />)
-        ) : (
-          <div className="text-center">Search for recipes to see results</div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 
 function Analytics() {
@@ -278,7 +264,7 @@ function RecipeList() {
       <Navbar />
       <Hero />
       <div className="max-w-[1240px] mx-auto p-4">
-        <div className="flex items-center">
+        <div  id="Cards" className="flex items-center">
           <input
             className="w-full p-3 rounded-md font-medium bg-black text-white border border-gray-300"
             type="text"
