@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { FaDribbbleSquare, FaFacebookSquare, FaGithubSquare, FaInstagram, FaTwitterSquare } from 'react-icons/fa';
 import { Link } from 'react-scroll';
+import axios from 'axios';
+
 
 
 import recipe from './assets/recipe.png';
@@ -9,6 +11,8 @@ import pancake from './assets/pancake.png';
 import caprese from './assets/caprese.png';
 import mango from './assets/mango.png';
 import pepper from './assets/pepper.png';
+
+
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -18,31 +22,30 @@ const Navbar = () => {
   };
 
   return (
-    
     <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white bg-black">
-    <h1 className="w-full text-3xl font-bold text-[#851f1f]">ReCP</h1>
-    <ul className="hidden md:flex">
-      <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer">Home</li>
-      <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer">
-        <Link to="Cards" smooth={true} duration={700}>
-          Recipes
-        </Link>
-      </li>
-      <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer">
-        <Link to="Analytics" smooth={true} duration={700}>
-          About
-        </Link>
-      </li>
-      <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer">Categories</li>
-      <li onClick={handleNav} className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer">
-        <Link to="Contact" smooth={true} duration={700}>
-          Contact
-        </Link>
-      </li>
-    </ul>
-    <div onClick={() => setNav(!nav)} className="block md:hidden cursor-pointer">
-      {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
-    </div>
+      <h1 className="w-full text-3xl font-bold text-[#851f1f]">ReCP</h1>
+      <ul className="hidden md:flex">
+        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer hover-nav-item">Home</li>
+        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer hover-nav-item">
+          <Link to="Cards" smooth={true} duration={700}>
+            Recipes
+          </Link>
+        </li>
+        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer hover-nav-item">
+          <Link to="Analytics" smooth={true} duration={700}>
+            About
+          </Link>
+        </li>
+        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer hover-nav-item">Categories</li>
+        <li className="p-4 hover:scale-105 duration-300 hover:text-[#851f1f] cursor-pointer hover-nav-item">
+          <Link to="Contact" smooth={true} duration={700}>
+            Contact
+          </Link>
+        </li>
+      </ul>
+      <div onClick={() => setNav(!nav)} className="block md:hidden cursor-pointer">
+        {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+      </div>
 
 
 
@@ -91,57 +94,45 @@ const Hero = () => {
 };
 
 function RecipeCard({ recipe }) {
+  // Check if recipe is defined and has the required properties
+  if (!recipe || !recipe.label || !recipe.ingredientLines || !recipe.image) {
+    return (
+      <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300">
+        <p className="text-center">Recipe data not available</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300">
-      <img className="w-20 mx-auto mt-[-3rem] " src={recipe.image} alt={recipe.title} />
-      <h2 className="text-2xl font-bold text-center py-8">{recipe.title}</h2>
+    <div className="w-full shadow-xl flex flex-col p-4 my-4 bg-white rounded-lg hover:scale-105 duration-300">
+      <img className="w-20 mx-auto " src={recipe.image} alt={recipe.label} />
+      <h2 className="text-2xl font-bold text-center py-8">{recipe.label}</h2>
       <h3 className="text-lg font-medium mb-2">Ingredients:</h3>
       <ul className="list-disc pl-6 mb-4">
-        {recipe.ingredients.map((ingredient, index) => (
+        {recipe.ingredientLines.map((ingredient, index) => (
           <li key={index}>{ingredient}</li>
         ))}
       </ul>
-      <h3 className="text-lg font-medium mb-2">Instructions:</h3>
-      <p>{recipe.instructions}</p>
     </div>
   );
 }
 
-function Cards() {
-  const recipes = [
-    {
-      id: 1,
-      title: 'Lemon Blueberry Pancakes',
-      ingredients: ['All-Purpose Flour', 'Baking Powder', 'Sugar', 'Salt', 'Milk', 'Egg', 'Butter', 'Lemon Zest', 'Blueberries'],
-      instructions: 'In a large bowl, whisk together the flour, baking powder, sugar, and salt...',
-      image: pancake
-    },
-    {
-      id: 2,
-      title: 'Caprese Salad',
-      ingredients: ['Tomatoes', 'Fresh Mozzarella Cheese', 'Fresh Basil Leaves', 'Extra Virgin Olive Oil', 'Balsamic Glaze', 'Salt', 'Pepper'],
-      instructions: 'Slice the tomatoes and fresh mozzarella cheese into 1/4-inch thick slices...',
-      image: caprese
-    },
-    {
-      id: 3,
-      title: 'Mango Coconut Smoothie',
-      ingredients: ['Ripe Mango', 'Coconut Milk', 'Greek Yogurt', 'Honey', 'Ice Cubes'],
-      instructions: 'Peel and dice the ripe mango. In a blender, combine the diced mango, coconut milk...',
-      image: mango
-    },
-  ];
+function Cards({ fetchedRecipes }) {
+  const recipes = fetchedRecipes || [];
 
   return (
     <div id="Cards" className="w-full py-[10rem] px-4 bg-white">
       <div className="max-w-[1240px] mx-auto grid md:grid-cols-3 gap-8">
-        {recipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
+        {fetchedRecipes ? (
+          recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />)
+        ) : (
+          <div className="text-center">Search for recipes to see results</div>
+        )}
       </div>
     </div>
   );
 }
+
 
 function Analytics() {
   return (
@@ -248,16 +239,76 @@ function Footer() {
 } 
 
 function RecipeList() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearch = async () => {
+    try {
+      const appId = 'be02e134'; // Replace with your Edamam API App ID
+      const appKey = '0827baaa491a61ee9bc1a1b556460fc9'; // Replace with your Edamam API App Key
+      const response = await axios.get(
+        `https://api.edamam.com/search?q=${encodeURIComponent(searchQuery)}&app_id=${appId}&app_key=${appKey}`
+      );
+
+      console.log('API response:', response.data);
+
+      if (response.data && response.data.hits) {
+        const recipes = response.data.hits.map((hit) => hit.recipe);
+        setSearchResults(recipes);
+      } else {
+        setSearchResults([]);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (searchQuery.trim() !== '') {
+      handleSearch();
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery]);
+
+  console.log('searchResults:', searchResults);
+
   return (
     <div className="App bg-black">
       <Navbar />
       <Hero />
-      <Cards />
+      <div className="max-w-[1240px] mx-auto p-4">
+        <div className="flex items-center">
+          <input
+            className="w-full p-3 rounded-md font-medium bg-black text-white border border-gray-300"
+            type="text"
+            placeholder="Search for recipes..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button
+            className="ml-2 bg-[#851f1f] rounded-md px-4 py-2 text-white font-medium"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {searchResults.length > 0 ? (
+            searchResults.map((recipe) => (
+              <RecipeCard key={recipe.uri} recipe={recipe} />
+            ))
+          ) : (
+            <div className="text-center">No recipes found. Try a different search query.</div>
+          )}
+        </div>
+      </div>
       <Analytics />
       <Newsletter />
       <Footer />
-      </div>
+    </div>
   );
 }
+
 
 export default RecipeList;

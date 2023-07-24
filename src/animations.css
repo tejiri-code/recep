@@ -11,4 +11,9 @@
   .slide-in-left {
     animation: slide-in-left 1s ease;
   }
+  .hover-nav-item:hover {
+    color: #851f1f;
+    transform: scale(1.05);
+    transition: color 0.3s, transform 0.3s;
+  }
   
